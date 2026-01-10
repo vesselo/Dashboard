@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>NPS RS Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<script src="f.js"></script>
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="filters">
+
+    <h2 class="filters-title">Фильтры</h2>
+
+    <!-- DATE -->
+    <div class="filter-card">
+      <div class="calendar-header">
+        <button class="arrow">‹</button>
+        <span>Декабрь 2025 г.</span>
+        <button class="arrow">›</button>
+      </div>
+
+      <div class="calendar-grid">
+        <div class="day-name">Пн</div>
+        <div class="day-name">Вт</div>
+        <div class="day-name">Ср</div>
+        <div class="day-name">Чт</div>
+        <div class="day-name">Пт</div>
+        <div class="day-name">Сб</div>
+        <div class="day-name">Вс</div>
+
+        <!-- дни -->
+        <div class="day muted">8</div>
+        <div class="day">9</div>
+        <div class="day">10</div>
+        <div class="day">11</div>
+        <div class="day">12</div>
+        <div class="day">13</div>
+        <div class="day">14</div>
+
+        <div class="day">15</div>
+        <div class="day">16</div>
+        <div class="day">17</div>
+        <div class="day">18</div>
+        <div class="day">19</div>
+        <div class="day">20</div>
+        <div class="day">21</div>
+
+        <div class="day">22</div>
+        <div class="day">23</div>
+        <div class="day selected">24</div>
+        <div class="day selected">25</div>
+        <div class="day">26</div>
+        <div class="day">27</div>
+        <div class="day">28</div>
+      </div>
+
+      <div class="calendar-actions">
+        <button class="btn secondary">Сегодня</button>
+        <button class="btn secondary">Последние 30 дней</button>
+      </div>
+    </div>
+
+    <!-- GRANULARITY -->
+    <div class="filter-block">
+      <label>Гранулярность дат</label>
+      <select>
+        <option>Месяц</option>
+        <option>Неделя</option>
+        <option>День</option>
+      </select>
+    </div>
+
+    <!-- GEO -->
+    <div class="filter-block">
+      <label>GEO партнёра</label>
+      <select>
+        <option>(All)</option>
+      </select>
+
+      <div class="geo-meta">
+        ⬆ Сортировано по: <b>Всего отзывов</b><br>
+        <span>Нажмите для фильтрации</span>
+      </div>
+
+      <ul class="geo-list">
+        <li><span>Россия</span><b>521</b></li>
+        <li><span>Индия</span><b>210</b></li>
+        <li><span>Украина</span><b>207</b></li>
+        <li><span>Узбекистан</span><b>95</b></li>
+        <li><span>Беларусь</span><b>90</b></li>
+        <li><span>Буркина Фасо</span><b>88</b></li>
+        <li><span>Бразилия</span><b>88</b></li>
+      </ul>
+    </div>
+
+        <!-- COMMENTS -->
+    <div class="filter-block">
+    <label>Комментарии</label>
+    <select>
+        <option selected>All</option>
+        <option>Только комментарии</option>
+    </select>
+    </div>
+
+    <!-- SEGMENT -->
+    <div class="filter-block">
+    <label>Сегмент</label>
+    <select>
+        <option selected>All</option>
+        <option>F-withdrawal</option>
+        <option>Re-withdrawal</option>
+    </select>
+    </div>
+
+    <!-- OFFICE (MULTISELECT) -->
+    <div class="filter-block">
+    <label>Офис</label>
+
+    <div class="multiselect">
+        <div class="multiselect-header">
+        (All)
+        <span class="caret">▾</span>
+        </div>
+
+        <div class="multiselect-dropdown">
+        <label><input type="checkbox" checked> (All)</label>
+        <label><input type="checkbox" checked> SPB</label>
+
+        <div class="multiselect-actions">
+            <button class="btn ghost">Cancel</button>
+            <button class="btn disabled">Apply</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- PROJECT (MULTISELECT) -->
+    <div class="filter-block">
+    <label>Проект</label>
+
+    <div class="multiselect">
+        <div class="multiselect-header">
+        (All)
+        <span class="caret">▾</span>
+        </div>
+
+        <div class="multiselect-dropdown">
+        <label><input type="checkbox" checked> (All)</label>
+        <label><input type="checkbox" checked> AF 1</label>
+        <label><input type="checkbox" checked> AF 2</label>
+        <label><input type="checkbox" checked> ASIA</label>
+        <label><input type="checkbox" checked> CIS 1</label>
+        <label><input type="checkbox" checked> CIS 2</label>
+        <label><input type="checkbox" checked> LAT 1</label>
+        <label><input type="checkbox" checked> LAT 2</label>
+        <label><input type="checkbox" checked> TURK</label>
+
+        <div class="multiselect-actions">
+            <button class="btn ghost">Cancel</button>
+            <button class="btn disabled">Apply</button>
+        </div>
+        </div>
+    </div>
+    </div>
+        <!-- MANAGER NAME -->
+    <div class="filter-block">
+    <label>ФИО менеджера</label>
+
+    <div class="multiselect">
+        <div class="multiselect-header">
+        (All)
+        <span class="caret">▾</span>
+        </div>
+
+        <div class="multiselect-dropdown">
+        <label><input type="checkbox" checked> (All)</label>
+        <label><input type="checkbox" checked> Фомин Дмитрий</label>
+        <label><input type="checkbox" checked> Иванова Анна</label>
+        <label><input type="checkbox" checked> Петров Алексей</label>
+
+        <div class="multiselect-actions">
+            <button class="btn ghost">Cancel</button>
+            <button class="btn disabled">Apply</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="filter-block">
+    <label>Email-партнёра</label>
+    <input
+        type="text"
+        class="text-input"
+        placeholder="Введите email"
+    />
+    </div>
+
+    <div class="filter-block">
+    <label>ID партнёра</label>
+    <input
+        type="text"
+        class="text-input"
+        placeholder="Введите ID"
+    />
+    </div>
+
+    <div class="filter-block">
+    <label>Уволенные менеджеры</label>
+    <select>
+        <option selected>(All)</option>
+        <option>Not Fired</option>
+        <option>Fired</option>
+    </select>
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="content">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div>
+        <h1>NPS RS</h1>
+        <p>Общий отчет NPS</p>
+      </div>
+    </header>
+
+    <div class="charts-row">
+
+      <div class="chart-card">
+        <img id="chart-nps-dynamic" src="images/NPS_Dynamic_NF.png" />
+      </div>
+
+      <div class="chart-card">
+        <img id="chart-nps-dist" src="images/NPS_Dist_NF.png" />
+      </div>
+
+    </div>
+
+    <div class="section-card stats-section">
+      <div class="section-title">Статистика по отзывам</div>
+
+      <div class="charts-row">
+        <div class="chart-card">
+          <img id="chart-cr" src="images/CR_NF.png">
+        </div>
+
+        <div class="chart-card">
+          <img id="quick-ans" src="images/QuickAns_NF.png">
+        </div>
+      </div>
+    </div>
+
+    <section class="section-card managers-section">
+      <h2 class="section-title">Отчет по GEO</h2>
+
+      <div class="geo-row">
+        <div class="managers-table-wrap">
+          <table class="managers-table" id="geo-table">
+            <thead>
+              <tr>
+                <th>GEO</th>
+                <th>Отзывы</th>
+                <th>NPS</th>
+                <th>Динамика NPS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Россия</td>
+                <td>460</td>
+                <td>92</td>
+                <td class="negative">-4</td>
+              </tr>
+              <tr>
+                <td>Индия</td>
+                <td>195</td>
+                <td>63</td>
+                <td class="negative">-37</td>
+              </tr>
+              <tr>
+                <td>Беларусь</td>
+                <td>85</td>
+                <td>88</td>
+                <td class="negative">-12</td>
+              </tr>
+              <tr>
+                <td>Узбекистан</td>
+                <td>92</td>
+                <td>73</td>
+                <td class="negative">-13</td>
+              </tr>
+              <tr>
+                <td>Бразилия</td>
+                <td>82</td>
+                <td>63</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>Азербайджан</td>
+                <td>81</td>
+                <td>75</td>
+                <td>+2</td>
+              </tr>
+              <tr>
+                <td>Венесуэла</td>
+                <td>80</td>
+                <td>80</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>Чили</td>
+                <td>37</td>
+                <td>73</td>
+                <td>+173</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- MAP -->
+        <div class="geo-map">
+          <div id="nps-map"></div>
+        </div>
+      </div>
+    </section>
+
+<!-- DIVIDER -->
+    <div class="divider"></div>
+
+    <h2 class="section-title">Детализация NPS RS</h2>
+
+    <!-- MANAGERS -->
+    <section class="section-card managers-section">
+
+      <h3 class="managers-title">Отчет по менеджерам</h3>
+
+      <div class="managers-table-wrap">
+        <table class="managers-table" id="data-manager-id">
+          <thead>
+            <tr>
+              <th>Офис</th>
+              <th>Проект</th>
+              <th>ФИО</th>
+              <th>Email менеджера</th>
+              <th>Отзывы</th>
+              <th>NPS</th>
+              <th>Динамика NPS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr 
+                class="manager-row"
+                data-manager="Фомин Дмитрий"
+                data-geo="Russia"
+                data-segment="CIS"
+              >            
+              <td>SPB</td>
+              <td>CIS 2</td>
+              <td>Фомин Дмитрий</td>
+              <td>dmitry.f@rs-sup.com</td>
+              <td>80</td>
+              <td>95</td>
+              <td class="negative">-3</td>
+            </tr>
+            <tr 
+                class="manager-row"
+                data-manager="Андреев Глеб"
+                data-geo="Russia"
+                data-segment="CIS"
+              >
+              <td>SPB</td>
+              <td>CIS 2</td>
+              <td>Андреев Глеб</td>
+              <td>gleb.a@rs-sup.com</td>
+              <td>79</td>
+              <td>97</td>
+              <td class="positive">+1</td>
+            </tr>
+            <tr 
+                class="manager-row"
+                data-manager="Чупраков Анастасия"
+                data-geo="Russia"
+                data-segment="ASIA"
+              >
+              <td>SPB</td>
+              <td>ASIA</td>
+              <td>Чупраков Анастасия</td>
+              <td>anastasia.c@rs-sup.com</td>
+              <td>70</td>
+              <td>80</td>
+              <td class="positive">+7</td>
+            </tr>
+            <tr
+                class="manager-row"
+                data-manager="Губина Алина"
+                data-geo="Uzbekistan"
+                data-segment="ASIA"
+              >
+              <td>SPB</td>
+              <td>ASIA</td>
+              <td>Губина Алина</td>
+              <td>alina.g@rs-sup.com</td>
+              <td>69</td>
+              <td>68</td>
+              <td class="negative">-32</td>
+            </tr>
+            <tr
+                class="manager-row"
+                data-manager="Трояновский Александр"
+                data-geo="Russia"
+                data-segment="CIS"
+              >
+              <td>SPB</td>
+              <td>CIS 1</td>
+              <td>Трояновский Александр</td>
+              <td>alex.t@rs-sup.com</td>
+              <td>68</td>
+              <td>88</td>
+              <td class="negative">-12</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+    <section class="section-card managers-section">
+      <h2 class="section-title">Отчет по партнерам</h2>
+
+      <div class="managers-table-wrap">
+        <table class="managers-table" id="partners-table">
+          <thead>
+            <tr>
+              <th>Проект</th>
+              <th>Email менеджера</th>
+              <th>Email партнера</th>
+              <th>Дата отзыва</th>
+              <th>Оценка</th>
+              <th>Сегмент</th>
+              <th>Текст комментария</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-segment="CIS">
+              <td>CIS 1</td>
+              <td>elizaveta.r@rs-sup.com</td>
+              <td>factoriogaming123@gmail.com</td>
+              <td>23.12.25</td>
+              <td>
+                <span class="rating-pill">5</span>
+              </td>
+              <td>Re-W</td>
+              <td>Very impressive! Very fast in performance</td>
+            </tr>
+
+            <tr data-segment="AF">
+              <td>AF 2</td>
+              <td>vladislav.b@rs-sup.com</td>
+              <td>anotherancher435@gmail.com</td>
+              <td>23.12.25</td>
+              <td>
+                <span class="rating-pill">5</span>
+              </td>
+              <td>Re-W</td>
+              <td>Лучший менеджер!</td>
+            </tr>
+            <tr data-segment="ASIA">
+              <td>ASIA</td>
+              <td>alina.g@rs-sup.com</td>
+              <td>slippercod2@gmail.com</td>
+              <td>23.12.25</td>
+              <td>
+                <span class="rating-pill">5</span>
+              </td>
+              <td>FW</td>
+              <td>I love you</td>
+            </tr>
+
+            <tr data-segment="TURK">
+              <td>TURK</td>
+              <td>kirill.sh@rs-sup.com</td>
+              <td>josephivanis@gmail.com</td>
+              <td>23.12.25</td>
+              <td>
+                <span class="rating-pill">5</span>
+              </td>
+              <td>Re-W</td>
+              <td>Very helpful</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+
+  </main>
+</div>
+<div id="nps-dist-tooltip" class="custom-tooltip">
+  <div class="tooltip-title">Распределение NPS</div>
+
+  <div class="tooltip-row">
+    <span class="dot green"></span>
+    Промоутеры: <b>1 720 (89%)</b>
+  </div>
+
+  <div class="tooltip-row">
+    <span class="dot yellow"></span>
+    Нейтралы: <b>61 (3%)</b>
+  </div>
+
+  <div class="tooltip-row">
+    <span class="dot red"></span>
+    Критики: <b>150 (7%)</b>
+  </div>
+
+  <div class="tooltip-divider"></div>
+  <div class="tooltip-total">Всего: <b>1 931</b></div>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>

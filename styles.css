@@ -1,0 +1,788 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow-y: auto;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #f6f7f9;
+  color: #1f2937;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+}
+
+/* SIDEBAR */
+.sidebar {
+  background: #f6f7f9;
+  color: #000;
+  padding: 16px;
+  width: 260px;
+}
+
+.filters-title {
+  margin: 0 0 16px;
+  font-size: 20px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 8px;
+}
+
+/* CARD */
+.filter-card {
+  background: #f6f7f9;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+/* CALENDAR */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.arrow {
+  background: #222;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  font-size: 12px;
+}
+
+.day-name {
+  text-align: center;
+  opacity: 0.6;
+}
+
+.day {
+  background: #1a1a1a;
+  text-align: center;
+  padding: 6px 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.day:hover {
+  background: #333;
+}
+
+.day.muted {
+  opacity: 0.3;
+}
+
+.day.selected {
+  background: #3b82f6;
+  color: #fff;
+}
+
+/* CALENDAR BUTTONS */
+.calendar-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.btn.secondary {
+  background: #222;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* FILTER BLOCK */
+.filter-block {
+  margin-bottom: 16px;
+}
+
+.filter-block label {
+  display: block;
+  font-size: 12px;
+  opacity: 0.7;
+  margin-bottom: 4px;
+}
+
+.filter-block select {
+  width: 100%;
+  background: #111;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+/* GEO */
+.geo-meta {
+  font-size: 11px;
+  opacity: 0.7;
+  margin: 8px 0;
+}
+
+.geo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+}
+
+.geo-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.geo-list li:hover {
+  background: #222;
+}
+
+/* Выделенный партнер / GEO */
+.geo-list li.active {
+  border: 2px solid #3b82f6;        /* синяя рамка */
+  border-radius: 8px;
+  padding: 6px 8px;
+  background: rgba(59, 130, 246, 0.08);
+}
+
+
+.filter-block select {
+  width: 100%;
+  background: #111;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.multiselect {
+  position: relative;
+  font-size: 13px;
+}
+
+.multiselect-header {
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 6px 8px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.caret {
+  opacity: 0.6;
+}
+
+.multiselect-dropdown {
+  background: #fff;
+  color: #000;
+  margin-top: 4px;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 13px;
+}
+
+.multiselect-dropdown label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.multiselect-dropdown input {
+  accent-color: #2563eb;
+}
+
+.multiselect-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.btn.ghost {
+  background: transparent;
+  border: none;
+  color: #2563eb;
+  cursor: pointer;
+}
+
+.btn.disabled {
+  background: #e5e7eb;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  color: #999;
+}
+
+.text-input {
+  width: 100%;
+  background: #111;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.text-input::placeholder {
+  color: #777;
+}
+
+
+/* CONTENT */
+.content {
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header p {
+  margin: 4px 0 0;
+  color: #6b7280;
+}
+
+/* GRID */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+/* CARD */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+/* CHART PLACEHOLDER */
+.chart-placeholder {
+  height: 180px;
+  background: #e5e7eb;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+}
+
+.chart-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.04),
+    0 10px 24px rgba(0,0,0,0.08);
+}
+
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px; /* ВАЖНО */
+}
+
+.chart-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.section {
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.chart-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* БОЛЬШАЯ СЕКЦИЯ (как в BI) */
+.section-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px;
+  padding-bottom: 1px;
+  margin-bottom: 20px;
+
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.04),
+    0 12px 32px rgba(0,0,0,0.08);
+}
+
+/* КАРТИНКИ */
+.chart-card img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
+.chart-subtitle {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 4px 0 12px;
+}
+
+
+/* STATS */
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+/* BARS */
+.bar {
+  margin-bottom: 12px;
+}
+
+.bar span {
+  font-size: 12px;
+}
+
+.bar-fill {
+  height: 10px;
+  background: #22c55e;
+  border-radius: 6px;
+  margin-top: 4px;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  font-size: 13px;
+}
+
+thead {
+  background: #f3f4f6;
+}
+
+tbody tr:hover {
+  background: #f9fafb;
+  cursor: pointer;
+}
+
+.negative {
+  color: #ef4444;
+}
+
+.positive {
+  color: #10b981;
+}
+
+/* GEO ROW */
+.geo-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* TABLE — БЕЗ КАРТОЧКИ */
+.geo-table-wrap {
+  padding: 0;
+}
+
+/* TABLE STYLES */
+.geo-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.geo-table thead {
+  background: #f3f4f6;
+}
+
+.geo-table th,
+.geo-table td {
+  padding: 12px;
+  font-size: 14px;
+}
+
+.geo-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* MAP — ТОЖЕ БЕЗ КАРТОЧКИ */
+.geo-map-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.geo-map {
+  width: 100%;
+  height: 520px; 
+  max-height: 600px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.geo-map {
+  position: relative;
+  height: 420px;
+}
+
+#nps-map {
+  width: 100%;
+  height: 100%;
+}
+
+.divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 48px 0 24px;
+}
+
+.managers-section {
+  padding: 24px;
+}
+
+.managers-title {
+  margin: 0 0 16px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.managers-table-wrap {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.managers-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.managers-table thead {
+  background: #f9fafb;
+}
+
+.managers-table th,
+.managers-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.managers-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.managers-table th {
+  font-weight: 600;
+  color: #374151;
+}
+
+.managers-table td {
+  color: #1f2937;
+}
+
+/* ===== SECTION DIVIDER ===== */
+.section-divider {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 48px 0;
+}
+
+/* === ОБЕРТКА ТАБЛИЦЫ === */
+.table-wrap {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* === ТАБЛИЦА === */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+/* ШАПКА */
+.styled-table thead {
+  background: #f3f4f6;
+}
+
+.styled-table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 600;
+  color: #111827;
+  white-space: nowrap;
+}
+
+/* ЯЧЕЙКИ */
+.styled-table td {
+  padding: 12px 16px;
+  border-top: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+/* ХОВЕР */
+.styled-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* ТЕКСТ КОММЕНТАРИЯ */
+.styled-table td:last-child {
+  color: #374151;
+  max-width: 420px;
+}
+
+/* === ОЦЕНКА (ЗЕЛЕНАЯ ПИЛЮЛЯ) === */
+.rating-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 8px;
+  background: #0f766e;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+
+/* ===== TOOLTIP ===== */
+.chart-tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: #111827;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.chart-tooltip b {
+  font-weight: 600;
+}
+
+.custom-tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: #111827;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+  opacity: 0;
+  transform: translate(1px, 1px);
+  transition: opacity 0.15s ease;
+  z-index: 9999;
+  min-width: 240px;
+}
+
+.tooltip-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.tooltip-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 8px 0;
+}
+
+.tooltip-total {
+  font-weight: 600;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot.green { background: #10b981; }
+.dot.yellow { background: #facc15; }
+.dot.red { background: #ef4444; }
+
+/* =======================
+   LIGHT FILTER SIDEBAR
+======================= */
+
+.sidebar {
+  background: #ffffff;
+  color: #111827;
+  border-right: 1px solid #e5e7eb;
+}
+
+.filters-title {
+  color: #111827;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* CARD */
+.filter-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+
+/* LABELS */
+.filter-block label {
+  color: #6b7280;
+}
+
+/* SELECT / INPUT */
+.filter-block select,
+.text-input {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #111827;
+}
+
+.text-input::placeholder {
+  color: #9ca3af;
+}
+
+/* MULTISELECT */
+.multiselect-header {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #111827;
+}
+
+.multiselect-dropdown {
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* BUTTONS */
+.btn.secondary {
+  background: #f9fafb;
+  color: #111827;
+  border: 1px solid #d1d5db;
+}
+
+.btn.secondary:hover {
+  background: #f3f4f6;
+}
+
+/* CALENDAR */
+.day {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.day:hover {
+  background: #e5e7eb;
+}
+
+.day.muted {
+  opacity: 0.4;
+}
+
+.day.selected {
+  background: #3b82f6;
+  color: #ffffff;
+}
+
+/* ARROWS */
+.arrow {
+  background: #f3f4f6;
+  color: #111827;
+  border: 1px solid #d1d5db;
+}
+
+/* GEO LIST */
+.geo-list li {
+  color: #111827;
+}
+
+.geo-list li:hover {
+  background: #f3f4f6;
+}
+
+/* ACTIVE GEO */
+.geo-list li.active {
+  border: 2px solid #3b82f6;
+  background: rgba(59, 130, 246, 0.08);
+}
+
+@media (min-width: 1600px) {
+  .geo-map {
+    height: 620px;
+  }
+}
