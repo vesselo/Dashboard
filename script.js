@@ -35,7 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const managerRows = document.querySelectorAll(".manager-row");
+  const summaryRow = document.querySelector(".summary-row");
   let activeManager = null;
+
+  summaryRow?.addEventListener("dblclick", resetAll);
 
   managerRows.forEach(row => {
     row.addEventListener("dblclick", () => {
@@ -61,6 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
       r.style.display = r === activeRow ? "" : "none";
       r.style.background = r === activeRow ? "#eef2ff" : "";
     });
+
+    if (summaryRow) {
+      summaryRow.style.display = "";
+    }
 
     // geo table
     document.querySelectorAll("#geo-table tbody tr").forEach(row => {
@@ -95,6 +102,10 @@ document.addEventListener("DOMContentLoaded", () => {
       r.style.display = "";
       r.style.background = "";
     });
+
+    if (summaryRow) {
+      summaryRow.style.display = "";
+    }
 
     // geo table
     document.querySelectorAll("#geo-table tbody tr").forEach(row => {
@@ -184,4 +195,18 @@ document.querySelectorAll(".geo-list li").forEach(item => {
     // добавить рамку выбранному
     item.classList.add("active");
   });
+});
+
+
+document.querySelectorAll(".rating-pill").forEach(el => {
+  const value = Number(el.innerText);
+
+  if (value >= 4) {
+    el.style.background = "#10b981";
+  } else if (value === 3) {
+    el.style.background = "#facc15";
+    el.style.color = "#111";
+  } else {
+    el.style.background = "#ef4444";
+  }
 });
