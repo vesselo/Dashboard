@@ -664,7 +664,12 @@ tbody tr:hover {
 /* зелёная оценка */
 .rating-positive {
   background-color: #dcfce7;
-  color: #065f46;
+  color: #022e22;
+}
+
+.rating-four {
+  background-color: #dcfce7;
+  color: #09bb88;
 }
 
 /* можно сразу заготовить */
@@ -676,6 +681,57 @@ tbody tr:hover {
 .rating-negative {
   background-color: #fee2e2;
   color: #991b1b;
+}
+
+.map-tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: #111827;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 9999;
+  min-width: 220px;
+}
+
+.map-tooltip b {
+  font-weight: 600;
+}
+
+.tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.tooltip-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 8px 0;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot.green { background: #10b981; }
+.dot.yellow { background: #facc15; }
+.dot.red { background: #ef4444; }
+
+.delta-negative {
+  color: #ef4444;
+}
+
+.delta-positive {
+  color: #10b981;
 }
 
 /* ===== TOOLTIP ===== */

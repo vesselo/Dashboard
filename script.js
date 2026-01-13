@@ -130,9 +130,18 @@ document.addEventListener("DOMContentLoaded", () => {
         "India",
         "Belarus",
         "Uzbekistan",
-        "Brazil"
+        "Brazil",
+        "Azerbaijan",
+        "Venezuela",
+        "Chili",
+        "Nigeria",
+        "Moldova",
+        "Armenia",
+        "Mexico",
+        "Pakistan",
+        "Kazakhstan"
       ]],
-      z: [[92, 63, 88, 73, 63]]
+      z: [[92, 63, 88, 73, 63, 75, 80, 73, 95, 100, 60, 100, 100, 100]]
     });
   }
 });
@@ -198,15 +207,17 @@ document.querySelectorAll(".geo-list li").forEach(item => {
 });
 
 
-document.querySelectorAll(".rating-pill").forEach(el => {
+document.querySelectorAll(".rating-cell").forEach(el => {
   const value = Number(el.innerText);
 
-  if (value >= 4) {
-    el.style.background = "#10b981";
-  } else if (value === 3) {
-    el.style.background = "#facc15";
+  if (value == 5) {
+    el.style.background = "#7ed193";
+  } else if (value == 4) {
+    el.style.background = "#82ffa3";
+  } else if (value == 3) {
+    el.style.background = "#f6db70";
     el.style.color = "#111";
   } else {
-    el.style.background = "#ef4444";
+    el.style.background = "#e09292";
   }
 });
