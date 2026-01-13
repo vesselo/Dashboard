@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "Brazil",
       "Azerbaijan",
       "Venezuela",
-      "Chili",
+      "Chile",
       "Nigeria",
       "Moldova",
       "Armenia",
@@ -132,7 +132,7 @@ const geoTooltipData = {
     detractors: { value: 20, pct: 13 },
     total: 160
   },
-  Chili: {
+  Chile: {
     nps: 73,
     delta: 173,
     deltaPct: -22,

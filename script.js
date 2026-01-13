@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Brazil",
         "Azerbaijan",
         "Venezuela",
-        "Chili",
+        "Chile",
         "Nigeria",
         "Moldova",
         "Armenia",
