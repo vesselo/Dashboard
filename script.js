@@ -67,10 +67,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+
+  const segmentToCountry = {
+    ASIA: "Uzbekistan",
+    TURK: "Turkey",
+    CIS: "Russia",
+    LAT: "Chile",
+    AF: "Nigeria"
+  };
+
   /* ===== APPLY FILTER ===== */
 
   function applyFilter(activeRow, geo, segment) {
     // managers
+    const managerName = activeRow.dataset.manager;
+    const country = segmentToCountry[segment];
+
     managerRows.forEach(r => {
       r.style.display = r === activeRow ? "" : "none";
       r.style.background = r === activeRow ? "#eef2ff" : "";
@@ -82,14 +94,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // geo table
     document.querySelectorAll("#geo-table tbody tr").forEach(row => {
-      row.style.display =
-        row.children[0].innerText === "Россия" ? "" : "none";
+      const geoName = row.children[0].innerText.trim();
+      row.style.display = geoName === country ? "" : "none";
     });
 
     // partners
     document.querySelectorAll("#partners-table tbody tr").forEach(row => {
-      row.style.display =
-        row.children[0].innerText === segment ? "" : "none";
+      const rowSegment = row.dataset.segment;
+      const emailManager = row.children[1].innerText.toLowerCase();
+
+      const matchSegment = rowSegment === segment;
+      const matchManager = emailManager.includes(managerName.split(" ")[0].toLowerCase());
+
+      row.style.display = matchSegment && matchManager ? "" : "none";
     });
 
     // charts
@@ -100,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // map
     Plotly.restyle("nps-map", {
-      locations: [["Russia"]],
+      locations: [[country]],
       z: [[92]]
     });
   }
