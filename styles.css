@@ -252,6 +252,24 @@ body {
   color: #777;
 }
 
+.reset-filters-btn {
+  margin-top: 12px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reset-filters-btn:hover {
+  background: #f3f4f6;
+}
+
+.reset-filters-btn:active {
+  transform: scale(0.98);
+}
 
 /* CONTENT */
 .content {

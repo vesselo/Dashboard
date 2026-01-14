@@ -38,6 +38,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const summaryRow = document.querySelector(".summary-row");
   let activeManager = null;
 
+  const resetBtn = document.getElementById("reset-filters-btn");
+
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      resetAll();
+      activeManager = null;
+      updateResetState();
+    });
+  }
+
   summaryRow?.addEventListener("dblclick", resetAll);
 
   managerRows.forEach(row => {
@@ -53,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
         applyFilter(row, geo, segment);
         activeManager = manager;
       }
+      updateResetState();
     });
   });
 
@@ -144,6 +155,12 @@ document.addEventListener("DOMContentLoaded", () => {
       z: [[92, 63, 88, 73, 63, 75, 80, 73, 95, 100, 60, 100, 100, 100]]
     });
   }
+  function updateResetState() {
+    if (!resetBtn) return;
+
+    resetBtn.disabled = !activeManager;
+    resetBtn.style.opacity = activeManager ? "1" : "0.5";
+  }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -210,11 +227,11 @@ document.querySelectorAll(".geo-list li").forEach(item => {
 document.querySelectorAll(".rating-cell").forEach(el => {
   const value = Number(el.innerText);
 
-  if (value == 5) {
+  if (value === 5) {
     el.style.background = "#7ed193";
-  } else if (value == 4) {
+  } else if (value === 4) {
     el.style.background = "#82ffa3";
-  } else if (value == 3) {
+  } else if (value === 3) {
     el.style.background = "#f6db70";
     el.style.color = "#111";
   } else {
