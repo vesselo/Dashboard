@@ -76,12 +76,69 @@ document.addEventListener("DOMContentLoaded", () => {
     AF: "Nigeria"
   };
 
+  const geoEnToRu = {
+    Russia: "Россия",
+    Uzbekistan: "Узбекистан",
+    Turkey: "Турция",
+    Chile: "Чили",
+    Nigeria: "Нигерия",
+    India: "Индия",
+    Belarus: "Беларусь",
+    Brazil: "Бразилия",
+    Azerbaijan: "Азербайджан",
+    Venezuela: "Венесуэла",
+    Moldova: "Молдова",
+    Armenia: "Армения",
+    Mexico: "Мексика",
+    Pakistan: "Пакистан",
+    Kazakhstan: "Казахстан",
+    "South Korea": "Южная Корея"
+  };
+
+  function fillFiltersFromManager(row) {
+      const office = row.dataset.office;
+      const project = row.dataset.project;
+      const manager = row.dataset.managerName;
+
+
+      // ===== OFFICE =====
+      checkMultiselectValue("filter-office", office);
+
+      // ===== PROJECT =====
+      checkMultiselectValue("filter-project", project);
+
+      // ===== MANAGER =====
+      checkMultiselectValue("filter-manager", manager);
+  }
+
+  function checkMultiselectValue(wrapperId, value) {
+    if (!value) return;
+
+    const wrapper = document.getElementById(wrapperId);
+    if (!wrapper) return;
+
+    const checkboxes = wrapper.querySelectorAll("input[type='checkbox']");
+    let found = false;
+
+    checkboxes.forEach(cb => {
+      const match = cb.value === value;
+      cb.checked = match;
+      if (match) found = true;
+    });
+
+    const header = wrapper.querySelector(".multiselect-header");
+    if (header && found) {
+      header.childNodes[0].textContent = value;
+    }
+  }
+
   /* ===== APPLY FILTER ===== */
 
   function applyFilter(activeRow, geo, segment) {
-    // managers
+    fillFiltersFromManager(activeRow);
     const managerName = activeRow.dataset.manager;
-    const country = segmentToCountry[segment];
+    const geoEn = activeRow.dataset.geo;          // Russia, Uzbekistan
+    const geoRu = geoEnToRu[geoEn]; 
 
     managerRows.forEach(r => {
       r.style.display = r === activeRow ? "" : "none";
@@ -94,8 +151,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // geo table
     document.querySelectorAll("#geo-table tbody tr").forEach(row => {
-      const geoName = row.children[0].innerText.trim();
-      row.style.display = geoName === country ? "" : "none";
+      const cell = row.children[0];
+      if (!cell || !cell.innerText.trim()) {        
+        row.style.display = "none";
+        return;
+      }
+
+      const geoName = cell.innerText.trim();
+      row.style.display = geoName === geoRu ? "" : "none";
     });
 
     // partners
@@ -171,7 +234,25 @@ document.addEventListener("DOMContentLoaded", () => {
       ]],
       z: [[92, 63, 88, 73, 63, 75, 80, 73, 95, 100, 60, 100, 100, 100]]
     });
+    resetFiltersUI();
   }
+
+  function resetFiltersUI() {
+    ["filter-office", "filter-project", "filter-manager"].forEach(id => {
+      const wrapper = document.getElementById(id);
+      if (!wrapper) return;
+
+      wrapper.querySelectorAll("input[type='checkbox']").forEach(cb => {
+        cb.checked = false;
+      });
+
+      const header = wrapper.querySelector(".multiselect-header");
+      if (header) {
+        header.childNodes[0].textContent = "(All)";
+      }
+    });
+  }
+
   function updateResetState() {
     if (!resetBtn) return;
 
@@ -227,6 +308,35 @@ document.addEventListener("DOMContentLoaded", () => {
     tooltip.style.top = e.clientY + 16 + "px";
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const chart = document.getElementById("quick-ans");
+  if (!chart) return;
+
+  const tooltip = document.createElement("div");
+  tooltip.className = "chart-tooltip";
+  tooltip.innerHTML = `
+    <div><b>Период:</b> 22.12.2026 — 28.12.2026</div>
+    <div>Быстрые ответы: <b>528 (31%)</b></div>
+    <div>Всего: <b>1844</b></div>
+  `;
+
+  document.body.appendChild(tooltip);
+
+  chart.addEventListener("mouseenter", () => {
+    tooltip.style.opacity = "1";
+  });
+
+  chart.addEventListener("mouseleave", () => {
+    tooltip.style.opacity = "0";
+  });
+
+  chart.addEventListener("mousemove", (e) => {
+    tooltip.style.left = e.clientX + 12 + "px";
+    tooltip.style.top = e.clientY + 12 + "px";
+  });
+});
+
 
 document.querySelectorAll(".geo-list li").forEach(item => {
   item.addEventListener("click", () => {

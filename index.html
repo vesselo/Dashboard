@@ -38,7 +38,15 @@
         <div class="day-name">Вс</div>
 
         <!-- дни -->
-        <div class="day muted">8</div>
+        <div class="day">1</div>
+        <div class="day">2</div>
+        <div class="day">3</div>
+        <div class="day">4</div>
+        <div class="day">5</div>
+        <div class="day">6</div>
+        <div class="day">7</div>
+
+        <div class="day">8</div>
         <div class="day">9</div>
         <div class="day">10</div>
         <div class="day">11</div>
@@ -54,13 +62,21 @@
         <div class="day">20</div>
         <div class="day">21</div>
 
-        <div class="day">22</div>
-        <div class="day">23</div>
+        <div class="day selected">22</div>
+        <div class="day selected">23</div>
         <div class="day selected">24</div>
         <div class="day selected">25</div>
-        <div class="day">26</div>
-        <div class="day">27</div>
-        <div class="day">28</div>
+        <div class="day selected">26</div>
+        <div class="day selected">27</div>
+        <div class="day selected">28</div>
+
+        <div class="day">29</div>
+        <div class="day">30</div>
+        <div class="day">31</div>
+        <div class="day muted">1</div>
+        <div class="day muted">2</div>
+        <div class="day muted">3</div>
+        <div class="day muted">4</div>
       </div>
 
       <div class="calendar-actions">
@@ -122,7 +138,7 @@
     </div>
 
     <!-- OFFICE (MULTISELECT) -->
-    <div class="filter-block">
+    <div class="filter-block" id="filter-office">
     <label>Офис</label>
 
     <div class="multiselect">
@@ -132,8 +148,8 @@
         </div>
 
         <div class="multiselect-dropdown">
-        <label><input type="checkbox" checked> (All)</label>
-        <label><input type="checkbox" checked> SPB</label>
+        <label><input type="checkbox" value="(All)"> (All)</label>
+        <label><input type="checkbox" value="SPB"> SPB</label>
 
         <div class="multiselect-actions">
             <button class="btn ghost">Cancel</button>
@@ -147,7 +163,7 @@
     <div class="filter-block">
     <label>Проект</label>
 
-    <div class="multiselect">
+    <div class="multiselect" id="filter-project">
         <div class="multiselect-header">
         (All)
         <span class="caret">▾</span>
@@ -155,14 +171,14 @@
 
         <div class="multiselect-dropdown">
         <label><input type="checkbox" checked> (All)</label>
-        <label><input type="checkbox" checked> AF 1</label>
-        <label><input type="checkbox" checked> AF 2</label>
-        <label><input type="checkbox" checked> ASIA</label>
-        <label><input type="checkbox" checked> CIS 1</label>
-        <label><input type="checkbox" checked> CIS 2</label>
-        <label><input type="checkbox" checked> LAT 1</label>
-        <label><input type="checkbox" checked> LAT 2</label>
-        <label><input type="checkbox" checked> TURK</label>
+        <label><input type="checkbox" value="AF 1"> AF 1</label>
+        <label><input type="checkbox" value="AF 2"> AF 2</label>
+        <label><input type="checkbox" value="ASIA"> ASIA</label>
+        <label><input type="checkbox" value="CIS 1"> CIS 1</label>
+        <label><input type="checkbox" value="CIS 2"> CIS 2</label>
+        <label><input type="checkbox" value="LAT 1"> LAT 1</label>
+        <label><input type="checkbox" value="LAT 2"> LAT 2</label>
+        <label><input type="checkbox" value="TURK"> TURK</label>
 
         <div class="multiselect-actions">
             <button class="btn ghost">Cancel</button>
@@ -175,7 +191,7 @@
     <div class="filter-block">
     <label>ФИО менеджера</label>
 
-    <div class="multiselect">
+    <div class="multiselect" id="filter-manager">
         <div class="multiselect-header">
         (All)
         <span class="caret">▾</span>
@@ -183,9 +199,16 @@
 
         <div class="multiselect-dropdown">
         <label><input type="checkbox" checked> (All)</label>
-        <label><input type="checkbox" checked> Фомин Дмитрий</label>
-        <label><input type="checkbox" checked> Иванова Анна</label>
-        <label><input type="checkbox" checked> Петров Алексей</label>
+        <label><input type="checkbox" value="Фомин Дмитрий"> Фомин Дмитрий</label>
+        <label><input type="checkbox" value="Андреев Глеб"> Андреев Глеб</label>
+        <label><input type="checkbox" value="Чупраков Анастасия"> Чупраков Анастасия</label>
+        <label><input type="checkbox" value="Губина Алина"> Губина Алина</label>
+        <label><input type="checkbox" value="Трояновский Александр"> Трояновский Александр</label>
+        <label><input type="checkbox" value="Шарафутдинова Дилара"> Шарафутдинова Дилара</label>
+        <label><input type="checkbox" value="Тихонова Варвара"> Тихонова Варвара</label>
+        <label><input type="checkbox" value="Чудилов Матвей"> Чудилов Матвей</label>
+        <label><input type="checkbox" value="Рябцев Александр"> Рябцев Александр</label>
+        <label><input type="checkbox" value="Белоконь Максим"> Белоконь Максим</label>
 
         <div class="multiselect-actions">
             <button class="btn ghost">Cancel</button>
@@ -359,7 +382,7 @@
                 <td>+29</td>
               </tr>
               <tr>
-                <td>Пакистан
+                <td>Пакистан</td>
                 <td>3</td>
                 <td>100</td>
                 <td>0</td>
@@ -421,6 +444,9 @@
                 data-manager="dmitry.f@rs-sup.com"
                 data-geo="Russia"
                 data-segment="CIS"
+                data-manager-name="Фомин Дмитрий"
+                data-project="CIS 2"
+                data-office="SPB"
               >            
               <td>SPB</td>
               <td>CIS 2</td>
@@ -435,6 +461,9 @@
                 data-manager="gleb.a@rs-sup.com"
                 data-geo="Russia"
                 data-segment="CIS"
+                data-manager-name="Андреев Глеб"
+                data-project="CIS 2"
+                data-office="SPB"
               >
               <td>SPB</td>
               <td>CIS 2</td>
@@ -449,6 +478,9 @@
                 data-manager="anastasia.ch@rs-sup.com"
                 data-geo="Russia"
                 data-segment="ASIA"
+                data-manager-name="Чупраков Анастасия"
+                data-project="ASIA"
+                data-office="SPB"
               >
               <td>SPB</td>
               <td>ASIA</td>
@@ -463,6 +495,9 @@
                 data-manager="alina.g@rs-sup.com"
                 data-geo="Uzbekistan"
                 data-segment="ASIA"
+                data-manager-name="Губина Алина"
+                data-project="ASIA"
+                data-office="SPB"
               >
               <td>SPB</td>
               <td>ASIA</td>
@@ -477,6 +512,9 @@
                 data-manager="alex.t@rs-sup.com"
                 data-geo="Russia"
                 data-segment="CIS"
+                data-manager-name="Трояновский Александр"
+                data-project="CIS 1"
+                data-office="SPB"
               >
               <td>SPB</td>
               <td>CIS 1</td>
@@ -491,6 +529,9 @@
                 data-manager="dilara.sh@rs-sup.com"
                 data-geo="Russia"
                 data-segment="CIS"
+                data-manager-name="Шарафутдинова Дилара"
+                data-project="CIS 1"
+                data-office="SPB"
               >
               <td>SPB</td>
               <td>CIS 1</td>
@@ -505,6 +546,9 @@
                 data-manager="varvara.t@rs-sup.com"
                 data-geo="Turkey"
                 data-segment="TURK"
+                data-manager-name="Тихонова Варвара"
+                data-project="TURK"
+                data-office="SPB"
               >
               <td>SPB</td>
               <td>TURK</td>
@@ -519,6 +563,9 @@
                 data-manager="matvey.ch@rs-sup.com"
                 data-geo="South Korea"
                 data-segment="ASIA"
+                data-manager-name="Чудилов Матвей"
+                data-project="ASIA"
+                data-office="SPB"
               >
               <td>SPB</td>
               <td>ASIA</td>
@@ -533,6 +580,9 @@
                 data-manager="alexandr.r@rs-sup.com"
                 data-geo="Nigeria"
                 data-segment="AF"
+                data-manager-name="Рябцев Александр"
+                data-project="AF 2"
+                data-office="SPB"
               >
               <td>SPB</td>
               <td>AF 2</td>
@@ -547,6 +597,9 @@
                 data-manager="maxim.b@rs-sup.com"
                 data-geo="Brazil"
                 data-segment="LAT"
+                data-manager-name="Белоконь Максим"
+                data-project="LAT 1"
+                data-office="SPB"
               >
               <td>SPB</td>
               <td>LAT 1</td>
@@ -592,7 +645,7 @@
             </tr>
             <tr data-segment="AF">
               <td>AF 2</td>
-              <td>vladislav.b@rs-sup.com</td>
+              <td>alexandr.r@rs-sup.com</td>
               <td>anotherancher435@gmail.com</td>
               <td>23.12.25</td>
               <td class="rating-cell rating-positive">
@@ -636,7 +689,7 @@
             </tr>
             <tr data-segment="LAT">
               <td>LAT 1</td>
-              <td>maxim.bh@rs-sup.com</td>
+              <td>maxim.b@rs-sup.com</td>
               <td>yeisondaniel01@gmail.com</td>
               <td>23.12.25</td>
               <td class="rating-cell rating-neutral">
