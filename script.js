@@ -139,6 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const managerName = activeRow.dataset.manager;
     const geoEn = activeRow.dataset.geo;          // Russia, Uzbekistan
     const geoRu = geoEnToRu[geoEn]; 
+    const country = activeRow.dataset.geo;
 
     managerRows.forEach(r => {
       r.style.display = r === activeRow ? "" : "none";
@@ -232,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Pakistan",
         "Kazakhstan"
       ]],
-      z: [[92, 63, 88, 73, 63, 75, 80, 73, 95, 100, 60, 100, 100, 100]]
+      z: [[92, -63, 88, 73, 63, 75, 80, 73, 95, 100, 60, 100, 100, 100]]
     });
     resetFiltersUI();
   }
